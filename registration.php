@@ -1,9 +1,10 @@
 <?php require_once "./includes/header.php"?>
-    
-    <!-- MAIN -->
-    <main class="main">
+<?php require "./includes/input_form.php"?>
 
-    </main>
-    <!-- MAIN -->
+<!-- MAIN -->
+<main class="main">
+    <?php echo input_form("POST", "Добавить")?>
+</main>
+<!-- MAIN -->
 
 <?php require_once "./includes/footer.php"?>
