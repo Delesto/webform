@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $start_age = $_POST['start_age'];
     $finish_age = $_POST['finish_age'];
     $speciality = $_POST['speciality'];
-    
+
     if (!empty($firstname) && !empty($lastname) && !empty($patronymic) && !empty($start_age) &&
         !empty($finish_age) && !empty($speciality)) {
             write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality);
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo input_form("POST", "input_form_handler.php", "Добавить") ?>
+        <?php echo input_form("POST", "Добавить") ?>
     </div>
 </main>
 <!-- MAIN -->

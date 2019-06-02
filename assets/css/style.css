@@ -37,6 +37,10 @@ a {
     text-decoration: none;
 }
 
+.form {
+    margin-bottom: 40px;
+}
+
 .form label {
     margin-bottom: 10px;
     font-size: 0.875rem;
@@ -65,4 +69,20 @@ a {
     border-radius: 4px;
     font-size: 1.2rem;
     background-color: #FD4C5A; 
+}
+
+.result {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.user_info .label {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.user_info li {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
 }
