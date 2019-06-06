@@ -16,11 +16,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <div class="logo">Webform вувуц</div>
+                    <div class="logo">Webform</div>
                 </div>
 
                 <div class="col-8">
                     <?php require './includes/nav.php'?>
+                    <?php require './includes/mobile_nav.php'?>
+                    <div class="hamburger">
+                        <span></span>
+                    </div>
                 </div>
             </div>
         </div>

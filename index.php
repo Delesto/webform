@@ -68,3 +68,20 @@ function search($data) {
 
     return $result;
 }
+
+function pages() {
+    $pages = array(
+        "add.php" => "Добавить",
+        "search.php" => "Найти",
+        "settings.php" => "Настройки"
+    );
+    
+    $url_array = explode("/", $_SERVER["REQUEST_URI"]);
+    $active = end($url_array);
+
+    return array(
+        "pages" => $pages,
+        "url_array" => $url_array,
+        "active" => $active
+    );
+}

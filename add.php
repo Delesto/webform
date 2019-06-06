@@ -1,5 +1,5 @@
 <?php require_once "./includes/header.php" ?>
-<?php require_once "./includes/input_form.php" ?>
+<?php require_once "./includes/form.php" ?>
 <?php require_once "./index.php" ?>
 
 <?php
@@ -15,14 +15,13 @@ if (isset($_POST['submit'])) {
         !empty($finish_age) && !empty($speciality)) {
             write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality);
     }
-
 }
 ?>
 
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo input_form("POST", "Добавить") ?>
+        <?php echo form("POST", "Добавить") ?>
     </div>
 </main>
 <!-- MAIN -->

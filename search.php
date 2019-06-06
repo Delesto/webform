@@ -1,5 +1,5 @@
 <?php require_once "./includes/header.php" ?>
-<?php require "./includes/input_form.php" ?>
+<?php require "./includes/form.php" ?>
 <?php require "./includes/output.php" ?>
 <?php require "./index.php" ?>
 
@@ -27,7 +27,7 @@ if (isset($_POST['submit'])) {
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo input_form("POST", "Поиск") ?>
+        <?php echo form("POST", "Поиск") ?>
         <h2 class="result">Результат: </h2>
         <?php 
             if( isset($_POST['submit']) ) {

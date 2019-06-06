@@ -1,29 +1,59 @@
 <?php
-    function input_form($method, $submit_lable) {
+    function form($method, $submit_lable) {
         return <<<HTML
             <form action="{$_SERVER['PHP_SELF']}" method="{$method}" class="form">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-lg-4 col-md-12">
                         <fieldset class="fullname-info">
                             <div class="input-wrap d-flex flex-column">
-                                <label for="firstname">Имя *</label>
+                                <label for="firstname">Имя*</label>
                                 <input type="text" id="firstname" name="firstname">
                             </div>
                             <div class="input-wrap d-flex flex-column">
-                                <label for="lastname">Фамилия *</label>
+                                <label for="lastname">Фамилия*</label>
                                 <input type="text" id="lastname" name="lastname">
                             </div>
                             <div class="input-wrap d-flex flex-column">
-                                <label for="patronymic">Отчество *</label>
+                                <label for="patronymic">Отчество*</label>
                                 <input type="text" id="patronymic" name="patronymic">
                             </div>
-                            <button name="submit" type="submit">{$submit_lable}</button>
                         </fieldset>
                     </div>
-                    <div class="col-6">
+
+                    <div class="col-lg-4 col-md-12">
+                        <fieldset class="department">
+                            <div class="input-wrap d-flex flex-column">
+                                <label for="group">Группа*</label>
+                                <select name="group" id="group">
+                                    <option value="Г">Г</option>
+                                    <option value="Д">Д</option>
+                                    <option value="П(а)">П(а)</option>
+                                    <option value=П(б)>П(б)</option>
+                                    <option value="У(а)">У(а)</option>
+                                    <option value="У(б)">У(б)</option>
+                                    <option value="И">И</option>
+                                    <option value="Т">Т</option>
+                                </select>
+                            </div>
+                            <div class="input-wrap d-flex flex-column">
+                                <label for="speciality">Специальность*</label>
+                                <select name="speciality" id="speciality">
+                                    <option value="Гостиничный сервис">Гостиничный сервис</option>
+                                    <option value="Дошкольное образование">Дошкольное образование</option>
+                                    <option value="Организация обслуживания в общественном питании">Обслуживания в общ. питании</option>
+                                    <option value="Преподавание в начальных классах">Преподавание в начальных классах</option>
+                                    <option value="Прикладная информатика">Прикладная информатика</option>
+                                    <option value="Туризм">Туризм</option>
+                                </select>
+                            </div>
+                            <input class="submit" name="submit" type="submit" value="{$submit_lable}"/>
+                        </fieldset>
+                    </div>
+
+                    <div class="col-lg-4 col-md-12">
                         <fieldset class="other-info">
                             <div class="input-wrap d-flex flex-column">
-                                <label for="start-age">Год начала обучения *</label>
+                                <label for="start-age">Год начала обучения*</label>
                                 <select name="start_age" id="start-age">
                                     <option value="1970">1970</option>
                                     <option value="1971">1971</option>
@@ -76,7 +106,7 @@
                                 </select>
                             </div>
                             <div class="input-wrap d-flex flex-column">
-                                <label for="finish-age">Год окончания обучения *</label>
+                                <label for="finish-age">Год окончания обучения*</label>
                                 <select name="finish_age" id="finish-age">
                                     <option value="1970">1970</option>
                                     <option value="1971">1971</option>
@@ -129,17 +159,7 @@
                                     <option value="2019">2019</option>
                                 </select>
                             </div>
-                            <div class="input-wrap d-flex flex-column">
-                                <label for="specialty">Специальность *</label>
-                                <select name="speciality" id="specialty">
-                                    <option value="Гостиничный сервис">Гостиничный сервис</option>
-                                    <option value="Дошкольное образование">Дошкольное образование</option>
-                                    <option value="Организация обслуживания в общественном питании">Организация обслуживания в общественном питании</option>
-                                    <option value="Преподавание в начальных классах">Преподавание в начальных классах</option>
-                                    <option value="Прикладная информатика">Прикладная информатика</option>
-                                    <option value="Туризм">Туризм</option>
-                                </select>
-                            </div>
+                            
                         </fieldset>
                     </div>
                 </div>
