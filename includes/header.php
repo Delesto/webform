@@ -7,6 +7,7 @@
     <title>Web Form</title>
     <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap-grid.css">
+    <link rel="stylesheet" type="text/css" href="./assets/css/fonts.css">
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 <body>
@@ -15,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-4">
-                    <div class="logo p-4">Webform</div>
+                    <div class="logo">Webform вувуц</div>
                 </div>
 
                 <div class="col-8">
