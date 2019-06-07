@@ -1,5 +1,5 @@
 <?php
-    function form($method, $submit_lable) {
+    function user_form($method, $submit_lable) {
         return <<<HTML
             <form action="{$_SERVER['PHP_SELF']}" method="{$method}" class="form">
                 <div class="row">

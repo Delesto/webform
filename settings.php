@@ -1,5 +1,5 @@
 <?php require_once "./includes/header.php" ?>
-<?php require "./includes/user_form.php" ?>
+<?php require "./includes/settings_form.php" ?>
 <?php require "./includes/output.php" ?>
 <?php require "./index.php" ?>
 
@@ -12,7 +12,6 @@ if (isset($_POST['submit'])) {
     $finish_age = $_POST['finish_age'];
     $speciality = $_POST['speciality'];
 
-    // $data = array($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality);
     $data = array(
         "firstname" => $firstname,
         "lastname" => $lastname,
@@ -27,13 +26,13 @@ if (isset($_POST['submit'])) {
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo user_form("POST", "Поиск") ?>
-        <h2 class="result">Результат: </h2>
-        <?php 
-            if( isset($_POST['submit']) ) {
-                echo output(search($data));
-            }
+        <?php echo settings_form("POST", "Отправить") ?>
+        <?php
+        // if( isset($_POST['submit']) ) {
+        //     echo output(search($data));
+        // }
         ?>
+        
     </div>
 </main>
 <!-- MAIN -->
