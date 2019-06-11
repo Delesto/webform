@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $start_age = $_POST['start_age'];
     $finish_age = $_POST['finish_age'];
     $speciality = $_POST['speciality'];
+    $group = $_POST['group'];
 
     // $data = array($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality);
     $data = array(
@@ -19,7 +20,8 @@ if (isset($_POST['submit'])) {
         "patronymic" => $patronymic,
         "start_age" => $start_age,
         "finish_age" => $finish_age,
-        "speciality" => $speciality
+        "speciality" => $speciality,
+        "student_group" => $group
     );
 }
 ?>

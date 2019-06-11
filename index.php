@@ -1,87 +1,85 @@
 <?php
-function connect_to_db() {
-    $servername = "localhost";
-    $username = "Admin";
-    $password = "webform";
-    $dbname = "webform";
-    
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    mysqli_set_charset( $conn, 'utf8');
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+function create_db($name) {
+    $sql = "CREATE DATABASE {$name}";
+    if (mysqli_query($conn, $sql)) {
+        echo "Database created successfully";
     } else {
+        echo "Error creating database: " . mysqli_error($conn);
+    }
+}
+function connect_to_db($server_name, $user_name, $user_password, $db_name) {    
+    $conn = mysqli_connect($server_name, $user_name, $user_password, $db_name);
+    mysqli_set_charset( $conn, 'utf8');
+    if ($conn) {
         return $conn;
+    } else {
+        die("Connection failed: " . mysqli_connect_error());
     }
 }
 
-function write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality) {
-    $conn = connect_to_db();
-    $create_table = "CREATE TABLE MyGuests (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-        firstname VARCHAR(30) NOT NULL,
-        lastname VARCHAR(30) NOT NULL,
-        patronymic VARCHAR(50),
-        start_age VARCHAR(30),
-        finish_age VARCHAR(30),
-        speciality VARCHAR(30)
-    )";
-
-    $insert_into = "INSERT INTO MyGuests (firstname, lastname, patronymic, start_age, finish_age, speciality)
-VALUES ('{$firstname}', '{$lastname}', '{$patronymic}', '{$start_age}', '{$finish_age}', '{$speciality}')";
-
-    mysqli_query($conn, $create_table);
-    mysqli_query($conn, $insert_into);
-    mysqli_close($conn);
+function write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality, $group) {
+    $db_connection = unserialize($_COOKIE["db_connection"], ["allow_classes" => false]);
+    if($db_connection) {
+        $conn = connect_to_db($db_connection["server_name"], $db_connection["user_name"], $db_connection["user_password"], $db_connection["db_name"]);
+        $table = "CREATE TABLE students (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
+            firstname VARCHAR(30) NOT NULL,
+            lastname VARCHAR(30) NOT NULL,
+            patronymic VARCHAR(50),
+            start_age VARCHAR(30),
+            finish_age VARCHAR(30),
+            speciality VARCHAR(30),
+            student_group VARCHAR(30)
+        )";
+    
+        $insert = "INSERT INTO students (firstname, lastname, patronymic, start_age, finish_age, speciality, student_group)
+                        VALUES ('{$firstname}', '{$lastname}', '{$patronymic}', '{$start_age}', '{$finish_age}', '{$speciality}', '{$group}')";
+    
+        mysqli_query($conn, $table);
+        mysqli_query($conn, $insert);
+        mysqli_close($conn);
+    }
 }
 
 function search($data) {
-    $conn = connect_to_db();
-    $conditions = array();
-    $result = array();
-    foreach($data as $field => $value) {
-        if($value != "") {
-            $conditions[] = "`$field` LIKE '%" . mysqli_real_escape_string($conn, $value) . "%'";
+    $db_connection = unserialize($_COOKIE["db_connection"], ["allow_classes" => false]);
+    if($db_connection) {
+        $conn = connect_to_db($db_connection["server_name"], $db_connection["user_name"], $db_connection["user_password"], $db_connection["db_name"]);
+        
+        $conditions = array();
+        $result = array();
+        foreach($data as $field => $value) {
+            if($value != "") {
+                $conditions[] = "`$field` LIKE '%" . mysqli_real_escape_string($conn, $value) . "%'";
+            }
         }
-    }
-
-    $query = "SELECT * FROM myguests ";
-    if(count($conditions) > 0) {
-        $query .= "WHERE " . implode (' AND ', $conditions);
-    }
-
-    $query_result = mysqli_query($conn, $query);
-
-    $query_result_check =  mysqli_num_rows($query_result);
-    if($query_result_check > 0) {
-        while($row = mysqli_fetch_assoc($query_result)) {
-            $result['Имя:'] = $row['firstname']; 
-            $result['Фамилия:'] = $row['lastname']; 
-            $result['Отчество:'] = $row['patronymic']; 
-            $result['Год начала обучения:'] = $row['start_age']; 
-            $result['Год окончания обучения:'] = $row['finish_age']; 
-            $result['Специальность:'] = $row['speciality']; 
-            
-        }
-    } else {
-        $result[] = "Ничего не найдено";
-    }
-
-    return $result;
-}
-
-function pages() {
-    $pages = array(
-        "add.php" => "Добавить",
-        "search.php" => "Найти",
-        "settings.php" => "Настройки"
-    );
     
-    $url_array = explode("/", $_SERVER["REQUEST_URI"]);
-    $active = end($url_array);
-
-    return array(
-        "pages" => $pages,
-        "url_array" => $url_array,
-        "active" => $active
-    );
+        $query = "SELECT * FROM students ";
+        if(count($conditions) > 0) {
+            $query .= "WHERE " . implode (' AND ', $conditions);
+        }
+    
+        $query_result = mysqli_query($conn, $query);
+    
+        $query_result_check =  mysqli_num_rows($query_result);
+        if($query_result_check > 0) {
+            while($row = mysqli_fetch_assoc($query_result)) {
+                $result['Имя:'] = $row['firstname']; 
+                $result['Фамилия:'] = $row['lastname']; 
+                $result['Отчество:'] = $row['patronymic']; 
+                $result['Год начала обучения:'] = $row['start_age']; 
+                $result['Год окончания обучения:'] = $row['finish_age']; 
+                $result['Специальность:'] = $row['speciality']; 
+                $result['Группа:'] = $row['student_group']; 
+                
+            }
+            return $result;
+        } else {
+            return "Ничего не найдено";
+        }
+    
+    } else {
+        return "Не удалось подключиться к базе данных";
+    }
 }
+

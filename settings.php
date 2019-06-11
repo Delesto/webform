@@ -1,25 +1,24 @@
-<?php require_once "./includes/header.php" ?>
-<?php require "./includes/settings_form.php" ?>
-<?php require "./includes/output.php" ?>
-<?php require "./index.php" ?>
+<?php include_once "./includes/header.php" ?>
+<?php include "./includes/settings_form.php" ?>
+<?php include "./includes/output.php" ?>
+<?php include "./index.php" ?>
 
 <?php
 if (isset($_POST['submit'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $patronymic = $_POST['patronymic'];
-    $start_age = $_POST['start_age'];
-    $finish_age = $_POST['finish_age'];
-    $speciality = $_POST['speciality'];
+    $db_name = $_POST['db_name'];
+    $server_name = $_POST['server_name'];
+    $user_name = $_POST['user_name'];
+    $user_password = $_POST['user_password'];
 
-    $data = array(
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "patronymic" => $patronymic,
-        "start_age" => $start_age,
-        "finish_age" => $finish_age,
-        "speciality" => $speciality
-    );
+    if (!empty($db_name) && !empty($server_name) && !empty($user_name) && !empty($user_password)) {
+        //Set user data from form to cookies
+        setcookie('db_connection', serialize(array(
+            "db_name" => $db_name,
+            "server_name" => $server_name,
+            "user_name" => $user_name,
+            "user_password" => $user_password
+        )));
+    }
 }
 ?>
 
@@ -27,14 +26,8 @@ if (isset($_POST['submit'])) {
 <main class="main">
     <div class="container">
         <?php echo settings_form("POST", "Отправить") ?>
-        <?php
-        // if( isset($_POST['submit']) ) {
-        //     echo output(search($data));
-        // }
-        ?>
-        
     </div>
 </main>
 <!-- MAIN -->
 
-<?php require_once "./includes/footer.php" ?>
+<?php include_once "./includes/footer.php" ?>

@@ -1,6 +1,6 @@
-<?php require_once "./includes/header.php" ?>
-<?php require_once "./includes/user_form.php" ?>
-<?php require_once "./index.php" ?>
+<?php include_once "./includes/header.php" ?>
+<?php include "./includes/user_form.php" ?>
+<?php include "./index.php" ?>
 
 <?php
 if (isset($_POST['submit'])) {
@@ -10,10 +10,11 @@ if (isset($_POST['submit'])) {
     $start_age = $_POST['start_age'];
     $finish_age = $_POST['finish_age'];
     $speciality = $_POST['speciality'];
+    $group = $_POST['group'];
 
     if (!empty($firstname) && !empty($lastname) && !empty($patronymic) && !empty($start_age) &&
-        !empty($finish_age) && !empty($speciality)) {
-            write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality);
+        !empty($finish_age) && !empty($speciality) && !empty($group)) {
+            write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality, $group);
     }
 }
 ?>
@@ -28,4 +29,4 @@ if (isset($_POST['submit'])) {
 
 
 
-<?php require_once "./includes/footer.php" ?>
+<?php include_once "./includes/footer.php" ?>
