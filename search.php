@@ -1,7 +1,7 @@
 <?php require_once "./includes/header.php" ?>
 <?php require "./includes/user_form.php" ?>
 <?php require "./includes/output.php" ?>
-<?php require "./index.php" ?>
+<?php include "./includes/functions.php" ?>
 
 <?php
 if (isset($_POST['submit'])) {

@@ -1,6 +1,6 @@
 <?php include_once "./includes/header.php" ?>
 <?php include "./includes/user_form.php" ?>
-<?php include "./index.php" ?>
+<?php include "./includes/functions.php" ?>
 
 <?php
 if (isset($_POST['submit'])) {
