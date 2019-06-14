@@ -14,7 +14,14 @@ if (isset($_POST['submit'])) {
 
     if (!empty($firstname) && !empty($lastname) && !empty($patronymic) && !empty($start_age) &&
         !empty($finish_age) && !empty($speciality) && !empty($group)) {
+        try {
             write_to_db($firstname, $lastname, $patronymic, $start_age, $finish_age, $speciality, $group);
+        } catch (Exception $err) {
+            session_start();
+            $_SESSION["err"] = $err;
+            header("Location: http://localhost/webform/error.php");
+            die();
+        }
     }
 }
 ?>
@@ -26,7 +33,5 @@ if (isset($_POST['submit'])) {
     </div>
 </main>
 <!-- MAIN -->
-
-
 
 <?php include_once "./includes/footer.php" ?>
