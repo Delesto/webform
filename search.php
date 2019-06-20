@@ -1,42 +1,30 @@
-<?php include_once "./includes/header.php" ?>
+<?php require_once "./includes/header.php" ?>
 <?php require "./includes/user_form.php" ?>
 <?php require "./includes/output.php" ?>
-<?php include "./includes/functions.php" ?>
-
-<?php
-if (isset($_POST['submit'])) {
-    $firstname = $_POST['firstname'];
-    $lastname = $_POST['lastname'];
-    $patronymic = $_POST['patronymic'];
-    $start_age = $_POST['start_age'];
-    $finish_age = $_POST['finish_age'];
-    $speciality = $_POST['speciality'];
-    $group = $_POST['group'];
-
-    $data = array(
-        "firstname" => $firstname,
-        "lastname" => $lastname,
-        "patronymic" => $patronymic,
-        "start_age" => $start_age,
-        "finish_age" => $finish_age,
-        "speciality" => $speciality,
-        "student_group" => $group
-    );
-}
-?>
 
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo user_form("POST", "Поиск") ?>
+
+        <?php echo user_form("POST", "./includes/search_handler.php", "Поиск") ?>
+
         <h2 class="h2">Результат: </h2>
-        <?php 
-            if( isset($_POST['submit']) ) {
-                echo output(search($data));
+        <?php
+            if( isset($_GET['name']) && isset($_GET['lastname']) && isset($_GET['patronymic']) &&
+            isset($_GET['start_age']) && isset($_GET['finish_age']) && isset($_GET['speciality']) && isset($_GET['student_group'])) {
+                echo output(array(
+                    "Имя" => $_GET['name'], 
+                    "Фамилия" => $_GET['lastname'], 
+                    "Отчество" => $_GET['patronymic'], 
+                    "Год начала обучения" => $_GET['start_age'], 
+                    "Год окончания обучения" => $_GET['finish_age'], 
+                    "Специальность" => $_GET['speciality'], 
+                    "Группа" => $_GET['student_group'] 
+                ));
             }
         ?>
     </div>
 </main>
 <!-- MAIN -->
 
-<?php include_once "./includes/footer.php" ?>
+<?php require_once "./includes/footer.php" ?>

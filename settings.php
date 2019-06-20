@@ -1,6 +1,4 @@
 <?php include_once "./includes/header.php" ?>
-<?php include "./includes/settings_form.php" ?>
-<?php include "./includes/output.php" ?>
 
 <?php
 if (isset($_POST['submit'])) {
@@ -24,7 +22,38 @@ if (isset($_POST['submit'])) {
 <!-- MAIN -->
 <main class="main">
     <div class="container">
-        <?php echo settings_form("POST", "Отправить") ?>
+        <form action="<?php $_SERVER['PHP_SELF']?>" method="POST" class="form settings-form">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-6 col-md-12">
+                    <div class="form-wrap">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-lg-9">
+                                <h2>Подключение к БД</h2>
+                                <fieldset class="db-config">
+                                    <div class="input-wrap d-flex flex-column">
+                                        <label for="db-name">Имя базы данных*</label>
+                                        <input type="text" id="db-name" name="db_name">
+                                    </div>
+                                    <div class="input-wrap d-flex flex-column">
+                                        <label for="server">Сервер базы данных*</label>
+                                        <input type="text" id="server" name="server_name">
+                                    </div>
+                                    <div class="input-wrap d-flex flex-column">
+                                        <label for="username">Имя пользователя*</label>
+                                        <input type="text" id="username" name="user_name">
+                                    </div>
+                                    <div class="input-wrap d-flex flex-column">
+                                        <label for="userpass">Пароль пользователя*</label>
+                                        <input type="text" id="userpass" name="user_password">
+                                    </div>
+                                    <input class="submit form-submit" name="submit" type="submit" value="Отправить"/>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 </main>
 <!-- MAIN -->

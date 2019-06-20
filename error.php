@@ -1,23 +1,39 @@
-<?php include_once "./includes/header.php" ?>
-<?php include "./includes/functions.php" ?>
+<!DOCTYPE html>
+<html lang="en">
 
-<?php
-// if(!$_SESSION["err"]) {
-//     header("Location: http://localhost/webform/add.php");
-// }
-?>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <?php require "./includes/head.php" ?>
+</head>
 
-<!-- MAIN -->
-<main class="main">
-    <div class="container">
-        <h2 class="h2">Ошибка: </h2>
-        <?php
-            session_start();
-            echo error_handler($_SESSION["err"]);
-            // unset($_SESSION["err"]);
-        ?>
-    </div>
-</main>
-<!-- MAIN -->
+<body id="error-page">
 
-<?php include_once "./includes/footer.php" ?>
+    <!-- MAIN -->
+    <main class="main">
+        <div class="container">
+            <h2 class="h2">Ошибка: </h2>
+            <?php
+            if(isset($_GET["error"])) {
+                if ($_GET["error"] == "db_connection") {
+                    echo "Не удалось выполнить соединение с базой данных.";
+                }
+            } else if(isset($_GET["search"])) {
+                if($_GET["search"] == "nothing_found") {
+                    echo "Извините, ничего не найдено.";
+                }
+            } else {
+                header("Location: http://localhost/webform/login.php");
+            }
+            ?>
+
+            <a href="login.php" class="login-link">Страница входа</a>
+        </div>
+    </main>
+    <!-- MAIN -->
+
+</body>
+
+</html>

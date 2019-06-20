@@ -1,7 +1,7 @@
 <?php
-    function user_form($method, $submit_lable) {
+    function user_form($method, $action, $submit_lable) {
         return <<<HTML
-            <form action="{$_SERVER['PHP_SELF']}" method="{$method}" class="form">
+            <form action="{$action}" method="{$method}" class="form">
                 <div class="row">
                     <div class="col-lg-4 col-md-12">
                         <fieldset class="fullname-info">

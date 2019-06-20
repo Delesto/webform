@@ -7,7 +7,6 @@
                     $output .= "<li>" . "<span class=\"label\">" . $field . "</span>" . " " . $value . "</li>";
                 }
             $output .= "</ul>";
-            
             return $output;
         } else {
             return $data . " =(";
