@@ -20,16 +20,12 @@
                 if ($_GET["error"] == "db_connection") {
                     echo "Не удалось выполнить соединение с базой данных.";
                 }
-            } else if(isset($_GET["search"])) {
+            } else {
                 if($_GET["search"] == "nothing_found") {
                     echo "Извините, ничего не найдено.";
                 }
-            } else {
-                header("Location: http://localhost/webform/login.php");
             }
             ?>
-
-            <a href="login.php" class="login-link">Страница входа</a>
         </div>
     </main>
     <!-- MAIN -->

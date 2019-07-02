@@ -216,17 +216,6 @@ a {
     top: 5px;
 }
 
-#login-page {
-    padding-top: 100px;
-}
-
-.login-link {
-    position: absolute;
-    bottom: 60px;
-    display: block;
-    font-family: "UbuntuBold", sans-serif;
-}
-
 #error-page {
     padding-top: 100px;
 }
